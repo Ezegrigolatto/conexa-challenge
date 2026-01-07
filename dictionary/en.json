@@ -1,0 +1,20 @@
+{
+  "Common": {
+    "thanks": "Thank you"
+  },
+  "HomePage": {},
+  "ErrorPage": {
+    "title": "Something went wrong",
+    "cta-button": "Back to Home"
+  },
+  "NotFound": {
+    "title": "Oops!",
+    "description": "The page you are looking for does not exist.",
+    "cta-button": "Back to Home"
+  },
+  "Metadata": {
+    "title": "Rick and Morty Challenge - Ezequiel Grigolatto",
+    "description": "Rick and Morty Challenge developed by Ezequiel Grigolatto for Conexa",
+    "keywords": "Rick and Morty, Conexa, Ezequiel Grigolatto, Frontend Developer, Challenge, Next.js, React, TypeScript"
+  }
+}
