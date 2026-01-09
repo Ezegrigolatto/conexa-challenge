@@ -123,3 +123,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 12px;
+  background: var(--color-foreground);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-foreground);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-foreground);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--color-foreground);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-foreground) var(--color-background);
+}
