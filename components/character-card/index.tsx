@@ -27,10 +27,10 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   };
 
   const dynamicCardClasses = disabled
-    ? 'bg-card/50 border border-border grayscale opacity-40 cursor-not-allowed'
+    ? 'bg-background/50 border border-border grayscale opacity-40 cursor-not-allowed'
     : selected
     ? 'bg-sidebar-primary/20 border-2 border-sidebar-primary cursor-pointer'
-    : 'bg-card border border-transparent hover:border-border cursor-pointer';
+    : 'bg-background border border-transparent hover:border-border cursor-pointer';
 
   return (
     <div
@@ -56,7 +56,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
                 className={`size-2 rounded-full ${getStatusColor(character.status)}`}
               />
               <span className="text-xs text-muted-foreground">
-                {character.status} • {character.species}
+                {character.status} - {character.species}
               </span>
             </>
           )}
