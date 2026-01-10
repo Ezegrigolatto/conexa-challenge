@@ -1,11 +1,30 @@
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { listCharacters } from '../rick-and-morty-api/characters';
+import { useAppStore } from '@/stores/use-app-store';
+import { useEffect } from 'react';
 
-export const useListCharacters = (page?: number) => {
-  return useQuery({
-    queryKey: ['characters', page],
-    queryFn: () => listCharacters(page),
-    placeholderData: keepPreviousData,
-    staleTime: Infinity
+export const useListCharacters = () => {
+  const addCharacters = useAppStore((state) => state.addCharacters);
+
+  const query = useInfiniteQuery({
+    queryKey: ['characters'],
+    queryFn: ({ pageParam = 1 }) => listCharacters(pageParam),
+    getNextPageParam: (lastPage) => {
+      if (!lastPage.info?.next) return undefined;
+
+      const url = new URL(lastPage.info.next);
+      return Number(url.searchParams.get('page'));
+    },
+    initialPageParam: 1,
+    staleTime: Infinity,
   });
-}
+
+  useEffect(() => {
+    if (query.data?.pages) {
+      const allCharacters = query.data.pages.flatMap((page) => page.results ?? []);
+      addCharacters(allCharacters);
+    }
+  }, [query.data?.pages, addCharacters]);
+
+  return query;
+};

@@ -2,6 +2,8 @@
 
 import CharacterList from '@/components/character-list';
 import EpisodesSection from '@/components/episodes-section';
+import { Progress } from '@/components/ui/progress';
+import { useListEpisodes } from '@/lib/tanstack-query/list-episodes';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
@@ -9,6 +11,7 @@ export default function HomePageComponent() {
   const params = useParams();
 
   const { locale: language } = params as { locale: string };
+  const { progress } = useListEpisodes();
 
   const [selectedCharacterIds, setSelectedCharacterIds] = React.useState<{
     list1: number | null;
@@ -52,6 +55,15 @@ export default function HomePageComponent() {
         </section>
         <div className="w-full flex flex-col items-center justify-center px-4 text-center">
           <h1 className="text-3xl font-bold mb-4 px-4">Episode analysis</h1>
+          {progress?.loaded === progress?.total ? null : (
+            <>
+              <Progress
+                className="w-full max-w-lg mb-2"
+                value={progress ? (progress.loaded / progress.total) * 100 : 100}
+              />
+              <p>Loading episodes...</p>
+            </>
+          )}
           <h2 className="text-lg mb-4 px-4 text-muted-foreground">
             {selectedCharacterIds.list1 && selectedCharacterIds.list2
               ? ''
