@@ -26,6 +26,6 @@ export const listCharacters = async (
   return await fetchFromApi(`/character${queryString ? `?${queryString}` : ''}`);
 };
 
-export const getCharacterById = async (id: number): Promise<Info<Character>> => {
+export const getCharacterById = async (id: number): Promise<Character> => {
   return await fetchFromApi(`/character/${id}`);
 };

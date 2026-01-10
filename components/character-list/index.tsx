@@ -8,6 +8,7 @@ import CharacterCard from '../character-card';
 import { useMemo, useRef, useCallback, useState } from 'react';
 import { Spinner } from '../ui/spinner';
 import { useDebouncedValue } from '@/utils/useDebounce';
+import CharacterDetailsPopover from '../character-popup';
 
 interface CharacterListProps {
   disabledCharacterId?: number;
@@ -77,11 +78,16 @@ const CharacterList: React.FC<CharacterListProps> = ({
       className="flex flex-col w-full overflow-y-auto gap-4 relative bg-card px-4 pb-4 rounded-lg border border-border"
     >
       <div className="sticky top-0 bg-card z-10 pt-4 pb-2 flex flex-col gap-2">
-        <h2 className="text-lg font-medium">
-          {`Character ${listIndex} ${
-            selectedCharacter?.name ? `- ${selectedCharacter.name}` : ''
-          }`}
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-medium">
+            {`Character ${listIndex} ${
+              selectedCharacter?.name ? `- ${selectedCharacter.name}` : ''
+            }`}
+          </h2>
+          {selectedCharacter && (
+            <CharacterDetailsPopover characterId={selectedCharacter.id} />
+          )}
+        </div>
         <input
           type="text"
           placeholder="Search characters..."

@@ -1,7 +1,7 @@
 import { useListEpisodes } from '@/lib/tanstack-query/list-episodes';
 import { useAppStore } from '@/stores/use-app-store';
 import EpisodeCard from '../episodes-card';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface EpisodesListProps {
   selectedCharacterIds?: number[];
@@ -12,6 +12,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
   selectedCharacterIds = [],
   listIndex,
 }) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const { isLoadingAll } = useListEpisodes();
   const episodes = useAppStore((state) => state.episodes);
   const characters = useAppStore((state) => state.characters);
@@ -44,7 +45,11 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
   };
 
   return (
-    <div className="flex flex-col w-full overflow-y-auto gap-4 bg-card px-4 pb-4 rounded-lg border border-border">
+    <div
+      className={`flex flex-col w-full gap-4 bg-card px-4 pb-4 rounded-lg border border-border ${
+        isPopoverOpen ? 'overflow-hidden' : 'overflow-y-auto'
+      }`}
+    >
       <div className="text-lg font-medium py-4 sticky top-0 bg-card">
         <p>{selectedCharacterIds.length > 0 && getListTitle()}</p>
         <p className="text-sm text-muted-foreground">
@@ -56,7 +61,11 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
         </p>
       </div>
       {filteredEpisodes.map((episode) => (
-        <EpisodeCard key={episode.id} episode={episode} />
+        <EpisodeCard
+          key={episode.id}
+          episode={episode}
+          onPopoverOpenChange={setIsPopoverOpen}
+        />
       ))}
       {!isLoadingAll &&
         filteredEpisodes.length === 0 &&
