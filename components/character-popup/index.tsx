@@ -16,7 +16,7 @@ const CharacterDetailsPopover: React.FC<CharacterDetailsPopoverProps> = ({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <button className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
           <InfoIcon className="w-4 h-4" />
           <span>See details</span>
         </button>
