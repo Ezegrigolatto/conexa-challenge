@@ -1,5 +1,6 @@
 import { Episode } from 'rickmortyapi';
 import EpisodeDetailsPopover from '../episode-popup';
+import { useTranslations } from 'next-intl';
 
 interface EpisodesCardProps {
   episode: Episode;
@@ -7,6 +8,8 @@ interface EpisodesCardProps {
 }
 
 const EpisodeCard: React.FC<EpisodesCardProps> = ({ episode, onPopoverOpenChange }) => {
+  const t = useTranslations();
+
   return (
     <EpisodeDetailsPopover episodeId={episode.id} onOpenChange={onPopoverOpenChange}>
       <div
@@ -18,7 +21,7 @@ const EpisodeCard: React.FC<EpisodesCardProps> = ({ episode, onPopoverOpenChange
         <h3 className="font-bold text-foreground truncate">{episode.name}</h3>
         <div className="flex flex-col mt-1">
           <span className="text-sm text-muted-foreground">
-            Air Date: {episode.air_date}
+            {t('EpisodeCard.air-date')}: {episode.air_date}
           </span>
         </div>
       </div>

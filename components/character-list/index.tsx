@@ -9,6 +9,7 @@ import { useMemo, useRef, useCallback, useState } from 'react';
 import { Spinner } from '../ui/spinner';
 import { useDebouncedValue } from '@/utils/useDebounce';
 import CharacterDetailsPopover from '../character-popup';
+import { useTranslations } from 'next-intl';
 
 interface CharacterListProps {
   disabledCharacterId?: number;
@@ -23,6 +24,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
   listIndex,
   onCharacterClick,
 }) => {
+  const t = useTranslations();
   const [searchInput, setSearchInput] = useState('');
   const debouncedSearch = useDebouncedValue(searchInput, 300);
   const isSearching = debouncedSearch.length > 0;
@@ -80,7 +82,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       <div className="sticky top-0 bg-card z-10 pt-4 pb-2 flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-medium">
-            {`Character ${listIndex} ${
+            {`${t('CharacterList.character')} ${listIndex} ${
               selectedCharacter?.name ? `- ${selectedCharacter.name}` : ''
             }`}
           </h2>
@@ -90,7 +92,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
         </div>
         <input
           type="text"
-          placeholder="Search characters..."
+          placeholder={t('CharacterList.search-placeholder')}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           className="w-full px-3 py-2 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -98,7 +100,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       </div>
 
       {isSearching && isSearchLoading ? (
-        <div className="text-center py-4 text-muted-foreground">Searching...</div>
+        <div className="text-center py-4 text-muted-foreground">{t('CharacterList.searching')}</div>
       ) : (
         <>
           {characters.map((character) => (
@@ -113,7 +115,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
 
           {isSearching && characters.length === 0 && (
             <div className="text-center py-4 text-muted-foreground">
-              No characters found for &quot;{debouncedSearch}&quot;
+              {t('CharacterList.no-results', { search: debouncedSearch })}
             </div>
           )}
         </>
@@ -130,7 +132,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       )}
 
       {!hasNextPage && characters.length > 0 && !isSearching && (
-        <div className="text-center py-4 text-muted-foreground">No more characters</div>
+        <div className="text-center py-4 text-muted-foreground">{t('CharacterList.no-more')}</div>
       )}
     </div>
   );

@@ -5,6 +5,7 @@ import { useGetEpisode } from '@/lib/tanstack-query/get-episode-by-id';
 import { useEffect, useState } from 'react';
 import { getCharacterById } from '@/lib/rick-and-morty-api/characters';
 import { Character } from 'rickmortyapi';
+import { useTranslations } from 'next-intl';
 
 interface EpisodeDetailsPopoverProps {
   episodeId: number;
@@ -17,6 +18,7 @@ const EpisodeDetailsPopover: React.FC<EpisodeDetailsPopoverProps> = ({
   children,
   onOpenChange,
 }) => {
+  const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const [episodeCharacters, setEpisodeCharacters] = useState<Character[]>([]);
   const [isLoadingEpisodeCharacters, setIsLoadingEpisodeCharacters] = useState(false);
@@ -68,7 +70,7 @@ const EpisodeDetailsPopover: React.FC<EpisodeDetailsPopoverProps> = ({
           <div className="flex flex-col items-center gap-2 py-4 text-destructive">
             <AlertCircle className="w-8 h-8" />
             <p className="text-sm text-center">
-              {error instanceof Error ? error.message : 'Failed to load episode details'}
+              {error instanceof Error ? error.message : t('EpisodeDetails.error-loading')}
             </p>
           </div>
         )}
@@ -85,15 +87,15 @@ const EpisodeDetailsPopover: React.FC<EpisodeDetailsPopoverProps> = ({
             <div className="flex flex-col gap-2 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="w-4 h-4" />
-                <span>Aired: {episode.air_date}</span>
+                <span>{t('EpisodeDetails.aired')}: {episode.air_date}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Film className="w-4 h-4" />
-                <span>Episode: {episode.episode}</span>
+                <span>{t('EpisodeDetails.episode')}: {episode.episode}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Users className="w-4 h-4" />
-                <span>{totalCharacters} character(s)</span>
+                <span>{t('EpisodeDetails.characters-count', { count: totalCharacters })}</span>
               </div>
             </div>
             {isLoadingEpisodeCharacters && (
@@ -103,8 +105,8 @@ const EpisodeDetailsPopover: React.FC<EpisodeDetailsPopoverProps> = ({
             )}
             {episodeCharacters.length > 0 && (
               <div className="border-t border-border pt-3">
-                <p className="text-xs text-muted-foreground mb-2">Featured characters:</p>
-                <div className="flex flex-wrap gap-1">
+                <p className="text-xs text-muted-foreground mb-2">{t('EpisodeDetails.featured-characters')}:</p>
+                <div className="flex flex-wrap gap-1 max-h-40 overflow-y-auto">
                   {episodeCharacters.map((char) => (
                     <span
                       key={char.id}

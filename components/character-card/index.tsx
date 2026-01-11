@@ -1,6 +1,7 @@
 import { CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import { Character } from 'rickmortyapi';
+import { useTranslations } from 'next-intl';
 
 interface CharacterCardProps {
   character: Character;
@@ -15,6 +16,8 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   disabled,
   onClick,
 }) => {
+  const t = useTranslations();
+
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case 'alive':
@@ -23,6 +26,17 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         return 'bg-destructive';
       default:
         return 'bg-muted-foreground';
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'alive':
+        return t('CharacterCard.status.alive');
+      case 'dead':
+        return t('CharacterCard.status.dead');
+      default:
+        return t('CharacterCard.status.unknown');
     }
   };
 
@@ -40,7 +54,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
     >
       <Image
         src={character.image}
-        alt={`${character.name} portrait avatar`}
+        alt={t('CharacterCard.portrait-alt', { name: character.name })}
         width={128}
         height={128}
         className="size-14 rounded-lg object-cover"
@@ -49,14 +63,14 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         <h3 className="font-bold text-foreground truncate">{character.name}</h3>
         <div className="flex items-center gap-2 mt-1">
           {disabled ? (
-            <span className="text-xs text-muted-foreground">Already Selected</span>
+            <span className="text-xs text-muted-foreground">{t('CharacterCard.already-selected')}</span>
           ) : (
             <>
               <span
                 className={`size-2 rounded-full ${getStatusColor(character.status)}`}
               />
               <span className="text-xs text-muted-foreground">
-                {character.status} - {character.species}
+                {getStatusLabel(character.status)} - {character.species}
               </span>
             </>
           )}

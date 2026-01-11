@@ -7,6 +7,7 @@ import '../globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import QueryProvider from '@/components/providers/query-provider';
 import { ThemeToggle } from '@/components/layout/theme-toggle';
+import LanguageSwitcher from '@/components/layout/language-switcher';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -62,8 +63,9 @@ export default async function Layout({
           >
             <NextIntlClientProvider>
               <ThemeToggle />
+              <LanguageSwitcher />
               {children}
-              </NextIntlClientProvider>
+            </NextIntlClientProvider>
           </ThemeProvider>
         </QueryProvider>
       </body>

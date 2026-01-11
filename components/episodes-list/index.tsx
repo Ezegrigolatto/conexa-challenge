@@ -2,6 +2,7 @@ import { useListEpisodes } from '@/lib/tanstack-query/list-episodes';
 import { useAppStore } from '@/stores/use-app-store';
 import EpisodeCard from '../episodes-card';
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface EpisodesListProps {
   selectedCharacterIds?: number[];
@@ -12,6 +13,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
   selectedCharacterIds = [],
   listIndex,
 }) => {
+  const t = useTranslations();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const { isLoadingAll } = useListEpisodes();
   const episodes = useAppStore((state) => state.episodes);
@@ -36,12 +38,18 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
 
   const getListTitle = () => {
     if (listIndex === 1)
-      return `Exclusive to ${getCharacterName(selectedCharacterIds[0])}`;
+      return t('EpisodesList.exclusive-to', {
+        name: getCharacterName(selectedCharacterIds[0]) || '',
+      });
     if (listIndex === 2)
-      return `Episodes with ${selectedCharacterIds.map(getCharacterName).join(' & ')}`;
+      return t('EpisodesList.episodes-with', {
+        names: selectedCharacterIds.map(getCharacterName).join(' & '),
+      });
     if (listIndex === 3)
-      return `Exclusive to ${getCharacterName(selectedCharacterIds[0])}`;
-    return 'Episodes';
+      return t('EpisodesList.exclusive-to', {
+        name: getCharacterName(selectedCharacterIds[0]) || '',
+      });
+    return t('EpisodesList.episodes');
   };
 
   return (
@@ -55,9 +63,7 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
         <p className="text-sm text-muted-foreground">
           {filteredEpisodes?.length === 0
             ? ''
-            : `${filteredEpisodes?.length} episode${
-                (filteredEpisodes?.length || 0) > 1 ? 's' : ''
-              } found.`}
+            : t('EpisodesList.episodes-found', { count: filteredEpisodes?.length || 0 })}
         </p>
       </div>
       {filteredEpisodes.map((episode) => (
@@ -70,7 +76,9 @@ const EpisodesList: React.FC<EpisodesListProps> = ({
       {!isLoadingAll &&
         filteredEpisodes.length === 0 &&
         selectedCharacterIds.length > 0 && (
-          <p className="text-muted-foreground text-center py-4">No episodes found</p>
+          <p className="text-muted-foreground text-center py-4">
+            {t('EpisodesList.no-episodes')}
+          </p>
         )}
     </div>
   );

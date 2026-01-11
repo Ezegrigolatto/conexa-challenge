@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 
-import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function Error({
@@ -28,8 +27,12 @@ export default function Error({
         {t('ErrorPage.title')}
       </h1>
       <div className="flex flex-col gap-4 sm:flex-row mt-8">
-        <Button variant="outline" asChild>
-          <Link href="/">{t('ErrorPage.cta-button')}</Link>
+        <Button
+          variant="outline"
+          asChild={false}
+          onClick={() => window.location.reload()}
+        >
+          {t('ErrorPage.cta-button')}
         </Button>
       </div>
     </div>

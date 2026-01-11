@@ -1,8 +1,56 @@
 {
   "Common": {
-    "thanks": "Gracias"
+    "thanks": "Gracias",
+    "unknown": "Desconocido"
   },
-  "HomePage": {},
+  "HomePage": {
+    "title": "Selector de Personajes de Rick and Morty",
+    "subtitle": "Selecciona un personaje de cada lista para ver en qué episodios aparecen.",
+    "episode-analysis": "Análisis de episodios"
+  },
+  "CharacterList": {
+    "character": "Personaje",
+    "search-placeholder": "Buscar personajes...",
+    "searching": "Buscando...",
+    "no-results": "No se encontraron personajes para \"{search}\"",
+    "no-more": "No hay más personajes"
+  },
+  "CharacterCard": {
+    "portrait-alt": "Avatar de {name}",
+    "already-selected": "Ya seleccionado",
+    "status": {
+      "alive": "Vivo",
+      "dead": "Muerto",
+      "unknown": "Desconocido"
+    }
+  },
+  "CharacterDetails": {
+    "see-details": "Ver detalles",
+    "error-loading": "Error al cargar los detalles del personaje",
+    "species": "Especie",
+    "gender": "Género",
+    "origin": "Origen",
+    "location": "Ubicación",
+    "type": "Tipo",
+    "appears-in": "Aparece en {count} episodio(s)"
+  },
+  "EpisodeCard": {
+    "air-date": "Fecha de emisión"
+  },
+  "EpisodeDetails": {
+    "error-loading": "Error al cargar los detalles del episodio",
+    "aired": "Emitido",
+    "episode": "Episodio",
+    "characters-count": "{count} personaje(s)",
+    "featured-characters": "Personajes que aparecen"
+  },
+  "EpisodesList": {
+    "episodes": "Episodios",
+    "exclusive-to": "Exclusivo de {name}",
+    "episodes-with": "Episodios con {names}",
+    "episodes-found": "{count} episodio(s) encontrado(s).",
+    "no-episodes": "No se encontraron episodios"
+  },
   "ErrorPage": {
     "title": "Algo salió mal",
     "cta-button": "Volver al inicio"

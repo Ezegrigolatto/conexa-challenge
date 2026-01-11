@@ -3,6 +3,7 @@ import { InfoIcon, AlertCircle } from 'lucide-react';
 import { Spinner } from '../ui/spinner';
 import { useGetCharacter } from '@/lib/tanstack-query/get-character-by-id';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface CharacterDetailsPopoverProps {
   characterId: number;
@@ -11,6 +12,7 @@ interface CharacterDetailsPopoverProps {
 const CharacterDetailsPopover: React.FC<CharacterDetailsPopoverProps> = ({
   characterId,
 }) => {
+  const t = useTranslations();
   const { data: character, isLoading, isError, error } = useGetCharacter(characterId);
 
   return (
@@ -18,7 +20,7 @@ const CharacterDetailsPopover: React.FC<CharacterDetailsPopoverProps> = ({
       <PopoverTrigger asChild>
         <button className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
           <InfoIcon className="w-4 h-4" />
-          <span>See details</span>
+          <span>{t('CharacterDetails.see-details')}</span>
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-80" align="start">
@@ -34,7 +36,7 @@ const CharacterDetailsPopover: React.FC<CharacterDetailsPopoverProps> = ({
             <p className="text-sm text-center">
               {error instanceof Error
                 ? error.message
-                : 'Failed to load character details'}
+                : t('CharacterDetails.error-loading')}
             </p>
           </div>
         )}
@@ -56,15 +58,15 @@ const CharacterDetailsPopover: React.FC<CharacterDetailsPopoverProps> = ({
             </div>
 
             <div className="grid grid-cols-2 gap-2 text-sm">
-              <DetailRow label="Species" value={character.species} />
-              <DetailRow label="Gender" value={character.gender} />
-              <DetailRow label="Origin" value={character.origin?.name} />
-              <DetailRow label="Location" value={character.location?.name} />
-              {character.type && <DetailRow label="Type" value={character.type} />}
+              <DetailRow label={t('CharacterDetails.species')} value={character.species} />
+              <DetailRow label={t('CharacterDetails.gender')} value={character.gender} />
+              <DetailRow label={t('CharacterDetails.origin')} value={character.origin?.name} />
+              <DetailRow label={t('CharacterDetails.location')} value={character.location?.name} />
+              {character.type && <DetailRow label={t('CharacterDetails.type')} value={character.type} />}
             </div>
 
             <div className="text-xs text-muted-foreground border-t border-border pt-2">
-              Appears in {character.episode?.length ?? 0} episode(s)
+              {t('CharacterDetails.appears-in', { count: character.episode?.length ?? 0 })}
             </div>
           </div>
         )}
@@ -74,10 +76,23 @@ const CharacterDetailsPopover: React.FC<CharacterDetailsPopoverProps> = ({
 };
 
 const StatusBadge: React.FC<{ status?: string }> = ({ status }) => {
+  const t = useTranslations();
+  
   const statusStyles: Record<string, string> = {
     Alive: 'bg-green-500/20 text-green-600',
     Dead: 'bg-red-500/20 text-red-600',
     unknown: 'bg-gray-500/20 text-gray-600',
+  };
+
+  const getStatusLabel = (status?: string) => {
+    switch (status?.toLowerCase()) {
+      case 'alive':
+        return t('CharacterCard.status.alive');
+      case 'dead':
+        return t('CharacterCard.status.dead');
+      default:
+        return t('CharacterCard.status.unknown');
+    }
   };
 
   return (
@@ -86,18 +101,22 @@ const StatusBadge: React.FC<{ status?: string }> = ({ status }) => {
         statusStyles[status ?? 'unknown'] ?? statusStyles.unknown
       }`}
     >
-      {status ?? 'Unknown'}
+      {getStatusLabel(status)}
     </span>
   );
 };
 
-const DetailRow: React.FC<{ label: string; value?: string }> = ({ label, value }) => (
-  <div className="flex flex-col">
-    <span className="text-muted-foreground text-xs">{label}</span>
-    <span className="truncate" title={value}>
-      {value || 'Unknown'}
-    </span>
-  </div>
-);
+const DetailRow: React.FC<{ label: string; value?: string }> = ({ label, value }) => {
+  const t = useTranslations();
+  
+  return (
+    <div className="flex flex-col">
+      <span className="text-muted-foreground text-xs">{label}</span>
+      <span className="truncate" title={value}>
+        {value || t('Common.unknown')}
+      </span>
+    </div>
+  );
+};
 
 export default CharacterDetailsPopover;

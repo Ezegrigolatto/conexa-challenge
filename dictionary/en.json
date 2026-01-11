@@ -1,8 +1,56 @@
 {
   "Common": {
-    "thanks": "Thank you"
+    "thanks": "Thank you",
+    "unknown": "Unknown"
   },
-  "HomePage": {},
+  "HomePage": {
+    "title": "Rick and Morty Character Selector",
+    "subtitle": "Select one character from each list to see in what episodes they appear.",
+    "episode-analysis": "Episode analysis"
+  },
+  "CharacterList": {
+    "character": "Character",
+    "search-placeholder": "Search characters...",
+    "searching": "Searching...",
+    "no-results": "No characters found for \"{search}\"",
+    "no-more": "No more characters"
+  },
+  "CharacterCard": {
+    "portrait-alt": "{name} portrait avatar",
+    "already-selected": "Already Selected",
+    "status": {
+      "alive": "Alive",
+      "dead": "Dead",
+      "unknown": "Unknown"
+    }
+  },
+  "CharacterDetails": {
+    "see-details": "See details",
+    "error-loading": "Failed to load character details",
+    "species": "Species",
+    "gender": "Gender",
+    "origin": "Origin",
+    "location": "Location",
+    "type": "Type",
+    "appears-in": "Appears in {count} episode(s)"
+  },
+  "EpisodeCard": {
+    "air-date": "Air Date"
+  },
+  "EpisodeDetails": {
+    "error-loading": "Failed to load episode details",
+    "aired": "Aired",
+    "episode": "Episode",
+    "characters-count": "{count} character(s)",
+    "featured-characters": "Featured characters"
+  },
+  "EpisodesList": {
+    "episodes": "Episodes",
+    "exclusive-to": "Exclusive to {name}",
+    "episodes-with": "Episodes with {names}",
+    "episodes-found": "{count} episode(s) found.",
+    "no-episodes": "No episodes found"
+  },
   "ErrorPage": {
     "title": "Something went wrong",
     "cta-button": "Back to Home"
