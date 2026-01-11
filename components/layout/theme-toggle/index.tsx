@@ -19,7 +19,7 @@ export function ThemeToggle() {
   return (
     <Button
       variant="ghost"
-      className="bg-transparent"
+      className="bg-transparent absolute top-4 right-4 md:top-2 md:right-8"
       size="icon"
       onClick={() => toggleTheme()}
     >

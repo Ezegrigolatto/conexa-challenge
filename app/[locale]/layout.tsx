@@ -6,6 +6,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import QueryProvider from '@/components/providers/query-provider';
+import { ThemeToggle } from '@/components/layout/theme-toggle';
+import LanguageSwitcher from '@/components/layout/language-switcher';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -59,7 +61,11 @@ export default async function Layout({
             enableSystem
             disableTransitionOnChange
           >
-            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider>
+              <ThemeToggle />
+              <LanguageSwitcher />
+              {children}
+            </NextIntlClientProvider>
           </ThemeProvider>
         </QueryProvider>
       </body>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import {
   DropdownMenu,
@@ -14,21 +14,22 @@ import { usePathname, useRouter } from 'next/navigation';
 const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [currentLanguage, setCurrentLanguage] = useState('en');
-
-  useEffect(() => {
-    const savedLanguage =
-      document.cookie
+  const getInitialLanguage = () => {
+    if (typeof document !== 'undefined') {
+      const savedLanguage = document.cookie
         .split('; ')
         .find((row) => row.startsWith('NEXT_LOCALE='))
-        ?.split('=')[1] || 'en';
-    setCurrentLanguage(savedLanguage);
-
-    const urlLanguage = pathname.split('/')[1];
-    if (['en', 'es'].includes(urlLanguage)) {
-      setCurrentLanguage(urlLanguage);
+        ?.split('=')[1];
+      if (savedLanguage) return savedLanguage;
     }
-  }, [pathname]);
+    const urlLanguage = pathname?.split('/')[1];
+    if (['en', 'es'].includes(urlLanguage)) {
+      return urlLanguage;
+    }
+    return 'en';
+  };
+
+  const [currentLanguage, setCurrentLanguage] = useState(getInitialLanguage);
 
   const changeLanguage = (newLanguage: string) => {
     setCurrentLanguage(newLanguage);
@@ -51,17 +52,23 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
-          {languageLabels[currentLanguage as keyof typeof languageLabels]}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => changeLanguage('en')}>English</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => changeLanguage('es')}>Español</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="bg-transparent absolute top-4 left-4 md:top-2 md:left-8">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="sm">
+            {languageLabels[currentLanguage as keyof typeof languageLabels]}
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          <DropdownMenuItem onClick={() => changeLanguage('en')}>
+            English
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => changeLanguage('es')}>
+            Español
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 };
 
