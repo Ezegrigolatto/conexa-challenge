@@ -10,7 +10,7 @@ La integración con la API de Rick and Morty se realiza utilizando TanStack Quer
 
 El proyecto está desarrollado con TypeScript y utiliza Tailwind CSS para los estilos, junto con Shadcn UI para los componentes de interfaz de usuario. Se ha implementado ademas un sistema de testing utilizando Jest y React Testing Library.
 
-Cuenta con animaciones suaves utilizando Lottie para mejorar la experiencia del usuario, manejo de errores y estados de carga para una mejor usabilidad. Se ha implementado una página de 404 personalizada para mejorar la experiencia del usuario en caso de rutas no encontradas y una página de error global para manejar errores inesperados en la aplicación.
+Cuenta con animaciones suaves para mejorar la experiencia del usuario, manejo de errores y estados de carga para una mejor usabilidad. Se ha implementado una página de 404 personalizada para mejorar la experiencia del usuario en caso de rutas no encontradas y una página de error global para manejar errores inesperados en la aplicación.
 
 
 
