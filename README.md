@@ -10,7 +10,7 @@ La integración con la API de Rick and Morty se realiza utilizando TanStack Quer
 
 El proyecto está desarrollado con TypeScript y utiliza Tailwind CSS para los estilos, junto con Shadcn UI para los componentes de interfaz de usuario. Se ha implementado ademas un sistema de testing utilizando Jest y React Testing Library.
 
-Cuenta con animaciones suaves utilizando Lottie para mejorar la experiencia del usuario, manejo de errores y estados de carga para una mejor usabilidad. Se ha implementado una página de 404 personalizada para mejorar la experiencia del usuario en caso de rutas no encontradas y una página de error global para manejar errores inesperados en la aplicación.
+Cuenta con animaciones suaves para mejorar la experiencia del usuario, manejo de errores y estados de carga para una mejor usabilidad. Se ha implementado una página de 404 personalizada para mejorar la experiencia del usuario en caso de rutas no encontradas y una página de error global para manejar errores inesperados en la aplicación.
 
 
 
@@ -92,11 +92,11 @@ pnpm dev
 conexa-challenge/
 ├── app/           # App Router de Next.js
 ├── components/    # Componentes React (pages, providers, components y layouts)
-├── dictionary/         # Tests
+├── dictionary/    # Archivos de traducción en formato JSON
 ├── i18n/          # Archivos de internacionalización
 ├── lib/           # API clients y configuración
 ├── public/        # Archivos estáticos
-├── stores/         # Estado global (Zustand)
+├── stores/        # Estado global (Zustand)
 └── utils/         # Utilidades y funciones auxiliares
 ```
 
@@ -107,8 +107,8 @@ conexa-challenge/
 - 📱 **Diseño Responsivo** - Adaptado a todos los dispositivos
 - ⚡ **Rendimiento Optimizado** - Con React Query para caché y revalidación
 - 🧪 **Tests** - Cobertura con Jest y Testing Library
-- 🎨 **Animaciones** - Transiciones suaves con Motion y Lottie
-
+- 🎨 **Animaciones** - Integración con Lottie para mejorar UX (solo pagina 404)
+- 🛠️ **Manejo de Errores** - Páginas personalizadas para errores y estados de carga
 ## 🧪 Testing
 
 ```bash
