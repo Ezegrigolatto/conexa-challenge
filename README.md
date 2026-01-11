@@ -2,6 +2,18 @@
 
 Una webpage construida con Next.js 16 que consume la API de Rick and Morty.
 
+Para este challenge, se ha implementado una página principal que permite a los usuarios seleccionar personajes de dos listas diferentes y ver los episodios en los que aparecen de forma independiente y tambien los episodios en los que ambos personajes aparecen juntos.
+
+La aplicación tiene soporte multi idioma, con deteccion y seteo automatico del mismo en base a la configuración del navegador del usuario. Cuenta ademas con modo oscuro/claro y un diseño responsivo adaptado a diferentes dispositivos en base a media queries.
+
+La integración con la API de Rick and Morty se realiza utilizando TanStack Query para optimizar el rendimiento mediante caching y revalidación de datos. El estado global de la aplicación se maneja con Zustand, proporcionando una gestión sencilla y eficiente del estado. La API utilizada es pública y no requiere autenticación. Se decidió utilizar la version REST de la misma.
+
+El proyecto está desarrollado con TypeScript y utiliza Tailwind CSS para los estilos, junto con Shadcn UI para los componentes de interfaz de usuario. Se ha implementado ademas un sistema de testing utilizando Jest y React Testing Library.
+
+Cuenta con animaciones suaves utilizando Lottie para mejorar la experiencia del usuario, manejo de errores y estados de carga para una mejor usabilidad. Se ha implementado una página de 404 personalizada para mejorar la experiencia del usuario en caso de rutas no encontradas y una página de error global para manejar errores inesperados en la aplicación.
+
+
+
 🔗 **[Ver Demo en Vivo](https://conexa-challenge.vercel.app/)**
 
 ## 🚀 Tecnologías
@@ -46,7 +58,7 @@ pnpm install
 3. Variables de entorno:
    Crea un archivo `.env.local` en la raíz del proyecto. Para este proyecto se necesita la URL de la API de Rick and Morty.
    En este caso es una API pública por lo que no es estrictamente necesario, pero es una buena práctica.
-   
+
    NEXT_PUBLIC_API_URL=https://rickandmortyapi.com/api/
 
 4. Inicia el servidor de desarrollo:
