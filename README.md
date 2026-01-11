@@ -92,11 +92,11 @@ pnpm dev
 conexa-challenge/
 ├── app/           # App Router de Next.js
 ├── components/    # Componentes React (pages, providers, components y layouts)
-├── dictionary/         # Tests
+├── dictionary/    # Archivos de traducción en formato JSON
 ├── i18n/          # Archivos de internacionalización
 ├── lib/           # API clients y configuración
 ├── public/        # Archivos estáticos
-├── stores/         # Estado global (Zustand)
+├── stores/        # Estado global (Zustand)
 └── utils/         # Utilidades y funciones auxiliares
 ```
 
