@@ -12,7 +12,7 @@ const EpisodesSection: React.FC<EpisodesSectionProps> = ({
   const dynamicSectionClasses =
     !selectedCharacter1 || !selectedCharacter2
       ? 'h-[1px] opacity-0'
-      : 'h-[40vh] opacity-100';
+      : 'h-[100vh] md:h-[40vh] opacity-100';
 
   return (
     <section
