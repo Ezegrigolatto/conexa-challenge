@@ -107,8 +107,8 @@ conexa-challenge/
 - 📱 **Diseño Responsivo** - Adaptado a todos los dispositivos
 - ⚡ **Rendimiento Optimizado** - Con React Query para caché y revalidación
 - 🧪 **Tests** - Cobertura con Jest y Testing Library
-- 🎨 **Animaciones** - Transiciones suaves con Motion y Lottie
-
+- 🎨 **Animaciones** - Integración con Lottie para mejorar UX (solo pagina 404)
+- 🛠️ **Manejo de Errores** - Páginas personalizadas para errores y estados de carga
 ## 🧪 Testing
 
 ```bash
