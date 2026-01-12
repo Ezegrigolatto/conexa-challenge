@@ -43,9 +43,9 @@ export default async function Layout({
         <meta name="theme-color" content="#000000" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="canonical" href={`https://localhost:3000`} />
-        <link rel="alternate" hrefLang="x-default" href="https://localhost:3000" />
-        <link rel="alternate" hrefLang="en" href="https://localhost:3000/en" />
+        <link rel="canonical" href={`https://conexa-challenge.vercel.app`} />
+        <link rel="alternate" hrefLang="x-default" href="https://conexa-challenge.vercel.app" />
+        <link rel="alternate" hrefLang="en" href="https://conexa-challenge.vercel.app/en" />
         <meta name="keywords" content={t('keywords')} />
         <meta name="author" content="Ezequiel Grigolatto" />
         <meta name="robots" content="noindex, nofollow" />
