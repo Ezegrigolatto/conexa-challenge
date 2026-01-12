@@ -61,6 +61,7 @@
     "cta-button": "Volver al inicio"
   },
   "Metadata": {
+    "siteName": "Rick and Morty Challenge",
     "title": "Rick and Morty Challenge - Ezequiel Grigolatto",
     "description": "Rick and Morty Challenge desarrollado por Ezequiel Grigolatto para Conexa",
     "keywords": "Rick and Morty, Conexa, Ezequiel Grigolatto, Frontend Developer, Challenge, Next.js, React, TypeScript"
