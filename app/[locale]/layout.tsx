@@ -39,15 +39,15 @@ export default async function Layout({
   const JSON_LD = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: t('Metadata.siteName'),
+    name: t('siteName'),
     url: 'https://conexa-challenge.vercel.app',
-    description: t('Metadata.description'),
+    description: t('description'),
   };
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        <title>{t('Metadata.title')}</title>
+        <title>{t('title')}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#000000" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,15 +63,15 @@ export default async function Layout({
           hrefLang="en"
           href="https://conexa-challenge.vercel.app/en"
         />
-        <meta name="description" content={t('Metadata.description')} />
-        <meta name="keywords" content={t('Metadata.keywords')} />
+        <meta name="description" content={t('description')} />
+        <meta name="keywords" content={t('keywords')} />
         <meta name="author" content="Ezequiel Grigolatto" />
         <meta name="robots" content="noindex, nofollow" />
-        <meta property="og:title" content={t('Metadata.title')} />
-        <meta property="og:description" content={t('Metadata.description')} />
+        <meta property="og:title" content={t('title')} />
+        <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://conexa-challenge.vercel.app" />
-        <meta property="og:site_name" content={t('Metadata.siteName')} />
+        <meta property="og:site_name" content={t('siteName')} />
         <meta property="og:image" content="../../public/og-image.webp" />
       </head>
       <body
