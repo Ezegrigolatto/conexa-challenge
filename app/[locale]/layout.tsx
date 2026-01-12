@@ -36,6 +36,14 @@ export default async function Layout({
 
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
+  const JSON_LD = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: t('siteName'),
+    url: 'https://conexa-challenge.vercel.app',
+    description: t('siteDescription'),
+  };
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
@@ -44,8 +52,16 @@ export default async function Layout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="canonical" href={`https://conexa-challenge.vercel.app`} />
-        <link rel="alternate" hrefLang="x-default" href="https://conexa-challenge.vercel.app" />
-        <link rel="alternate" hrefLang="en" href="https://conexa-challenge.vercel.app/en" />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://conexa-challenge.vercel.app"
+        />
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href="https://conexa-challenge.vercel.app/en"
+        />
         <meta name="keywords" content={t('keywords')} />
         <meta name="author" content="Ezequiel Grigolatto" />
         <meta name="robots" content="noindex, nofollow" />
@@ -54,6 +70,10 @@ export default async function Layout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <QueryProvider>
           <ThemeProvider
             attribute="class"
