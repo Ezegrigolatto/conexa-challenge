@@ -13,7 +13,8 @@
     "search-placeholder": "Buscar personajes...",
     "searching": "Buscando...",
     "no-results": "No se encontraron personajes para \"{search}\"",
-    "no-more": "No hay más personajes"
+    "no-more": "No hay más personajes",
+    "error-loading": "Error al cargar los personajes"
   },
   "CharacterCard": {
     "portrait-alt": "Avatar de {name}",

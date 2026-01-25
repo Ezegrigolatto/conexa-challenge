@@ -16,6 +16,8 @@ export const useListCharacters = () => {
     },
     initialPageParam: 1,
     staleTime: Infinity,
+    retry: 3,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
   });
 
   useEffect(() => {

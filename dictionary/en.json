@@ -13,7 +13,8 @@
     "search-placeholder": "Search characters...",
     "searching": "Searching...",
     "no-results": "No characters found for \"{search}\"",
-    "no-more": "No more characters"
+    "no-more": "No more characters",
+    "error-loading": "Failed to load characters"
   },
   "CharacterCard": {
     "portrait-alt": "{name} portrait avatar",
